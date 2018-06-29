@@ -1,0 +1,19 @@
+{
+  "name": "transporter",
+  "version": "1.0.0",
+  "description": "Transporter App is a carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wiztemple/Transporter.git"
+  },
+  "author": "Ukaegbu Sullivan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wiztemple/Transporter/issues"
+  },
+  "homepage": "https://github.com/wiztemple/Transporter#readme"
+}
