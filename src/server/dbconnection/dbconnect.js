@@ -1,7 +1,11 @@
+const { Pool } = require('pg');
 
-import { Pool } from 'pg';
-import config from '../config/config';
-
-const pool = (process.NODE_ENV === 'production') ? new Pool(config.database) : new Pool(config.dev);
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'transporter',
+  password: 'root',
+  port: 5432,
+});
 
 export default pool;

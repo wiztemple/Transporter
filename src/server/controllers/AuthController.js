@@ -8,7 +8,7 @@ export default class AuthController {
       firstname, lastname, email, phone, password,
     } = request.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
-    const query = `INSERT INTO users (firstname, lastname, phone email, password) VALUES ('${firstname}','${lastname}', '${email}', '${phone}','${hashedPassword}') RETURNING *`;
+    const query = `INSERT INTO users (firstname, lastname, phone, email, password) VALUES ('${firstname}','${lastname}', '${email}', '${phone}','${hashedPassword}') RETURNING *`;
     try {
       const result = await pool.query(query);
       const token = jwt.sign(
@@ -30,7 +30,7 @@ export default class AuthController {
     } catch (error) {
       return response.status(500).json({
         status: 'error',
-        message: error.stack,
+        message: error.message,
       });
     }
   }
@@ -60,7 +60,7 @@ export default class AuthController {
     } catch (error) {
       return response.status(500).json({
         status: 'error',
-        message: error.stack,
+        message: error.message,
       });
     }
   }
