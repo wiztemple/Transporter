@@ -1,11 +1,12 @@
-const { Pool } = require('pg');
+import { Pool } from 'pg';
+import config from '../config/config';
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'transporter',
-  password: 'root',
-  port: 5432,
+  user: config.dev.user,
+  host: config.dev.host,
+  database: config.dev.database,
+  password: config.dev.password,
+  port: config.dev.port,
 });
 
 export default pool;
