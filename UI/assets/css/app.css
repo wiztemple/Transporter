@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Lobster+Two');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 body {
   padding: 0px;
   margin: 0px;
   height: 100%;
   font-size: 1rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Lato', sans-serif;
   box-sizing: border-box;
 }
 body::-webkit-scrollbar {
@@ -526,7 +527,7 @@ margin-left: auto;
     display: none;
 }
 .nav__logo{
-    font-family: 'Lobster Two', cursive !important;
+    font-family: 'Lobster', cursive !important;
     box-sizing: border-box !important;
     font-size: 20px !important;
     color:#175cf2 !important;
