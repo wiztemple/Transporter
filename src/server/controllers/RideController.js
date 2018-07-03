@@ -28,7 +28,7 @@ export default class RideController {
     const { rideId } = request.params;
     const query = `SELECT * FROM requests WHERE id = '${request.params.id}'`;
     try {
-      const result = await pool.query(query);
+      const result = await db.query(query);
       if (result.rowCount === 0) {
         return response.status(404).json({
           status: 'fail',
