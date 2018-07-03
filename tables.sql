@@ -1,28 +1,39 @@
+
+CREATE TABLE role (
+    id SERIAL PRIMARY KEY,
+    role_name VARCHAR (100) NOT NULL,
+);
+
 CREATE TABLE users (
-  id serial PRIMARY KEY,
-  firstname varchar(100),
-  lastname varchar(100),
-  email varchar(100) not null,
-  is_admin int DEFAULT 0,
-  password varchar(250) not null,
+  id SERIAL PRIMARY KEY,
+  firstname VARCHAR (100),
+  lastname VARCHAR (100),
+  email VARCHAR(100) NOT NULL UNIQUE,
+  role_id INTEGER REFERENCES role(role_id),
+  password varchar (250) NOT NULL,
   created_at TIMESTAMPTZ DEFAULT Now()
 );
 
 CREATE TABLE rides (
-  id serial PRIMARY KEY,
-  title varchar(250) not null,
-  from varchar(250) not null,
-  to varchar(250) not null,
-  seats int not null,
-  price int not null,
-  vehicle_type varchar(250) not null,
-  user_id int not null,
-  status_id int DEFAULT 1,
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(250) NOT NULL,
+  location VARCHAR(250) NOT NULL,
+  destination VARCHAR(250) NOT NULL,
+  seats INTEGER NOT NULL,
+  price INTEGER NOT NULL,
+  departure DATE NOT NULL,
+  vehicle_type VARCHAR(250) NOT NULL,
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY(userId) REFERENCES users(id),
+  status_id INTEGER DEFAULT 1,
   created_at TIMESTAMPTZ DEFAULT Now()
 );
 
-CREATE TABLE role (
-    id serial PRIMARY KEY,
-    role_name varchar(100) NOT NULL,
-    user_id int NOT NULL
+CREATE TABLE requestRides (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  ride_id INTEGER NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  FOREIGN KEY(userID) REFERENCES users(id),
+  FOREIGN KEY(rideID) REFERENCES rides(id)
 );

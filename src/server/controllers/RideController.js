@@ -1,10 +1,10 @@
-import pool from '../dbconnection/dbconnect';
+import db from '../dbconnection/db';
 
 export default class RideController {
   static async getRides(request, response) {
     const query = 'SELECT * FROM rides ORDER BY id ASC';
     try {
-      const rides = await pool.query(query);
+      const rides = await db.query(query);
       if (rides.rows > 0) {
         return response.status(200).json({
           status: 'success',
@@ -47,4 +47,12 @@ export default class RideController {
       });
     }
   }
+  // static createRide(request, response){}
+  // static getRideRequests(request, response) {}
+  // static requestRide(request, response) {}
+  // static  acceptRide(request, response) {}
+  // updateRideOffer(request, response) {}
+  // updateRideRequest(request, response) {}
+  // deleteRequestOffer(request, response) {}
+  // deleteRideRequest(request, response) {}
 }
