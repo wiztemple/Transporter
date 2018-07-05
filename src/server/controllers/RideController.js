@@ -1,6 +1,12 @@
 import db from '../dbconnection/db';
 
 export default class RideController {
+  /**
+ * @description get all rides
+ * @param {object} request - The object that return a request
+ * @param {object} response - The object that returns a response
+ * @returns {object}
+ */
   static async getRides(request, response) {
     const query = 'SELECT * FROM rides ORDER BY id ASC';
     try {
@@ -24,6 +30,12 @@ export default class RideController {
     }
   }
 
+  /**
+ * @description get a specific ride
+ * @param {object} request - The object that return a request
+ * @param {object} response - The object that returns a response
+ * @returns {object}
+ */
   static async getARide(request, response) {
     const { rideId } = request.params;
     const query = `SELECT * FROM requests WHERE id = '${request.params.id}'`;

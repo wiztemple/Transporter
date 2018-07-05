@@ -3,6 +3,12 @@ import jwt from 'jsonwebtoken';
 import db from '../dbconnection/db';
 
 export default class AuthController {
+  /**
+ * @description create a new user
+ * @param {object} request - The object that return a request
+ * @param {object} response - The object that returns a response
+ * @returns {object}
+ */
   static async signup(request, response) {
     const {
       firstname, lastname, email, password,
@@ -35,6 +41,12 @@ export default class AuthController {
     }
   }
 
+  /**
+ * @description login a user
+ * @param {object} request - The object that return a request
+ * @param {object} response - The object that returns a response
+ * @returns {object}
+ */
   static async login(request, response) {
     const { email, password } = request.body;
     const query = `SELECT * FROM users WHERE email = '${email}'`;
@@ -49,7 +61,7 @@ export default class AuthController {
       }
       const token = jwt.sign(
         { id: result.rows[0].id },
-        process.env.JWT_SERCRET,
+        process.env.JWT_SECRET,
         { expiresIn: 86400 },
       );
       return response.status(200).json({
@@ -65,6 +77,12 @@ export default class AuthController {
     }
   }
 
+  /**
+ * @description all user details
+ * @param {object} request - The object that return a request
+ * @param {object} response - The object that returns a response
+ * @returns {object}
+ */
   static async getUsers(request, response) {
     const query = 'SELECT * FROM users';
     try {
