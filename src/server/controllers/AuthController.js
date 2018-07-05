@@ -25,7 +25,6 @@ export default class AuthController {
           firstname: result.rows[0].firstname,
           lastname: result.rows[0].lastname,
           email: result.rows[0].email,
-          
         },
       });
     } catch (error) {
@@ -57,6 +56,29 @@ export default class AuthController {
         status: 'success',
         message: 'user successfully signed in',
         token,
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 'error',
+        message: error.message,
+      });
+    }
+  }
+
+  static async getUsers(request, response) {
+    const query = 'SELECT * FROM users';
+    try {
+      const result = await db.query(query);
+      if (!result) {
+        return response.status(404).json({
+          status: 'fail',
+          message: 'Not found',
+        });
+      }
+      return response.status(200).json({
+        status: 'success',
+        message: 'All users',
+        users: result.rows,
       });
     } catch (error) {
       return response.status(500).json({

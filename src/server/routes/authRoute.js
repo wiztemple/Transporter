@@ -9,4 +9,7 @@ authRoute.post('/signup', AuthController.signup);
 // login
 authRoute.post('/login', AuthController.login);
 
+// all users
+authRoute.get('/users', AuthController.getUsers);
+
 export default authRoute;
