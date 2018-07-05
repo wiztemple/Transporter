@@ -37,8 +37,8 @@ export default class RideController {
  * @returns {object}
  */
   static async getARide(request, response) {
-    const { rideId } = request.params;
-    const query = `SELECT * FROM requests WHERE id = '${request.params.id}'`;
+    const rideId = parseInt(request.params.rideId, 10);
+    const query = `SELECT * FROM rides WHERE id = '${rideId}'`;
     try {
       const result = await db.query(query);
       if (result.rowCount === 0) {
@@ -59,7 +59,39 @@ export default class RideController {
       });
     }
   }
-  // static createRide(request, response){}
+
+  /**
+ * @description create ride
+ * @param {object} request - The object that return a request
+ * @param {object} response - The object that returns a response
+ * @returns {object}
+ */
+  static async createRide(request, response) {
+    const {
+      location, destination, seats, departure, userId,
+    } = request.body;
+    const query = `INSERT INTO rides (location, destination, seats, departure, userId) VALUES('${location}', '${destination}', '${seats}', '${departure}', ${userId}')`;
+    try {
+      const result = await db.query(query);
+      return response.status(201).json({
+        status: 'success',
+        message: 'ride was successfully created',
+        ride: {
+          id: result.rows[0].id,
+          userId: result.rows[0].userId,
+          location: result.rows[0].location,
+          destination: result.rows[0].destination,
+          seats: result.rows[0].seats,
+          departure: result.rows[0].departure,
+        },
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 'fail',
+        message: error.message,
+      });
+    }
+  }
   // static getRideRequests(request, response) {}
   // static requestRide(request, response) {}
   // static  acceptRide(request, response) {}
